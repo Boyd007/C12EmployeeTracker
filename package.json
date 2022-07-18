@@ -1,0 +1,29 @@
+{
+  "name": "1-1-1",
+  "version": "1.0.0",
+  "description": "Employee Tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boyd007/C12EmployeeTracker"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boyd007/C12EmployeeTracker"
+  },
+  "homepage": "",
+  "dependencies": {
+    "express": "^4.18.1",
+    "inquirer": "^7.0.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "console.table": "^0.10.0"
+  }
+}
