@@ -1,26 +1,18 @@
-// IMPORT EXPRESS
 const express = require("express");
 
-// IMPORT MYSQL
 const mysql = require("mysql2");
 
-// IMPORT INQUIRER
 const inquirer = require("inquirer");
 
-// IMPORT CONSOLE TABLE
 const cTable = require("console.table");
 
-// SETTING UP PORT VARIABLE
 const PORT = process.env.PORT || 3001;
 
-// INITIALIZE EXPRESS
 const app = express();
 
-// SETTING UP EXPRESS APPLICATION TO HANDLE DATA PARSING
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// CONNECT TO MYSQL DATABASE
 const db = mysql.createConnection(
   {
     host: "localhost",
@@ -31,7 +23,6 @@ const db = mysql.createConnection(
   console.log(`Connected to the business_db database.`)
 );
 
-// INQUIRER QUESTIONS PROMPT
 startQuestions = () => {
   inquirer
     .prompt([
@@ -52,7 +43,6 @@ startQuestions = () => {
       },
     ])
     .then((response) => {
-      // SWITCH TO FLOW THROUGH QUESTIONS BASED ON THE USERS SELECTION
       switch (response.initial_questions) {
         case "View all departments":
           viewDepartments();
@@ -76,7 +66,6 @@ startQuestions = () => {
     });
 };
 
-// VEIW DEPARTMENTS FUNCTION
 function viewDepartments() {
   db.query(
     "SELECT department.id AS Department_ID, department.name AS Department_Name FROM department",
@@ -91,7 +80,6 @@ function viewDepartments() {
   );
 }
 
-// VIEW ROLES FUNCTION
 function viewRoles() {
   db.query(
     "SELECT role.id AS Role_ID, role.title AS Role_Title, role.salary AS Role_Salary, department.name AS Role_Department_ID FROM role INNER JOIN department ON role.department_id = department.id;",
@@ -106,7 +94,6 @@ function viewRoles() {
   );
 }
 
-// VIEW EMPLOYEES FUNCTION
 function viewEmployees() {
   db.query(
     'SELECT employee.id AS Employee_ID, CONCAT(employee.first_name, " ", employee.last_name) AS Employee_Name, role.title AS Employee_Role, role.salary AS Employee_Salary, CONCAT(e2.first_name, " ", e2.last_name) AS Employee_Manager FROM employee INNER JOIN role ON employee.role_id = role.id LEFT JOIN employee as e2 ON e2.id = employee.manager_id',
@@ -121,7 +108,6 @@ function viewEmployees() {
   );
 }
 
-// ADD DEPARTMENT FUNCTION
 function addDepartment() {
   inquirer
     .prompt([

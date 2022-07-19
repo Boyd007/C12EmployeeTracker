@@ -12,7 +12,7 @@ This application allows the user to create a
 
 
 
-The above criteria is met when the user 
+The above criteria is met when the user is able to correctly view and 
 
 # Sample 
 
