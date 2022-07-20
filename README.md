@@ -19,9 +19,13 @@ The above criteria is met when the user is able to correctly view and modify emp
 
 # Technologies
 
-* HTML
-* CSS
+* mysql
+* mysql2
+* Inquirer Package
+* Console.table Package
 * JS
+* Node
+* Npm
 
 # GitHub
 
