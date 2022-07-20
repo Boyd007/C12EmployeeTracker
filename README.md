@@ -19,9 +19,10 @@ The above criteria is met when the user is able to correctly view and
 
 # Technologies
 
-* HTML
-* CSS
+* mysql
 * JS
+* Node
+* Npm
 
 # GitHub
 
