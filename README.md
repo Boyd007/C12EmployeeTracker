@@ -20,6 +20,9 @@ The above criteria is met when the user is able to correctly view and
 # Technologies
 
 * mysql
+* mysql2
+* Inquirer Package
+* Console.table Package
 * JS
 * Node
 * Npm
