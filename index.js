@@ -57,15 +57,106 @@ startQuestions = () => {
           addDepartment();
           break;
         case "Add a role":
+          addRole();
           break;
         case "Add an employee":
           break;
         case "Update an employee role":
+          addUpdateEmployeeRole();
+          break;
+        case "Exit":
           process.exit();
       }
     });
 };
-
+function addUpdateEmployeeRole() {
+  db.query(
+    "SELECT employee.id AS Employee_ID, CONCAT(employee.first_name, " +
+      "employee.last_name) AS Employee_Name, role.title AS Employee_Role, " +
+      "role.salary AS Employee_Salary, CONCAT(e2.first_name, " +
+      "e2.last_name) AS Employee_Manager FROM employee INNER JOIN role ON " +
+      "employee.role_id = role.id LEFT JOIN employee as e2 ON e2.id = " +
+      "employee.manager_id",
+    (err, res) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log(res);
+        const employeeList = res.map((item) => ({
+          name: item.Employee_Name,
+          value: item.Employee_ID,
+        }));
+        console.log(employeeList);
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              message: "Which employee would you like to update?",
+              name: "employee_id",
+              choices: employeeList,
+            },
+          ])
+          .then((response) => {
+            console.log(response);
+            db.query("select * from role", (err, res) => {
+              if (err) {
+                throw err;
+              } else {
+                const roleList = res.map((item) => ({
+                  name: item.title,
+                  value: item.id,
+                }));
+              }
+              startQuestions();
+            });
+          });
+      }
+    }
+  );
+}
+function addRole() {
+  db.query("SELECT * FROM department", (err, res) => {
+    if (err) {
+      throw err;
+    } else {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            message: "What would you like to call the new role?",
+            name: "new_role",
+          },
+          {
+            type: "input",
+            message: "What is the salary for this role?",
+            name: "new_salary",
+          },
+          {
+            type: "list",
+            message: "What department does this role belong to?",
+            name: "new_department",
+            choices: res.map((item) => item.name),
+          },
+        ])
+        .then((input) => {
+          db.query(
+            "INSERT INTO role SET ?",
+            {
+              title: input.new_role,
+              salary: input.new_salary,
+              department_id: res.find(
+                (item) => item.name === input.new_department
+              ).id,
+            },
+            (err, res) => {
+              if (err) throw err;
+              startQuestions();
+            }
+          );
+        });
+    }
+  });
+}
 function viewDepartments() {
   db.query(
     "SELECT department.id AS Department_ID, department.name AS Department_Name FROM department",
@@ -128,32 +219,5 @@ function addDepartment() {
       );
     });
 }
-
-// function addEmployee() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         message: "What would you like to call the new employee?",
-//         name: "new_employee",
-//       },
-//     ])
-//     .then((input) => {
-//       db.query(
-//         "INSERT INTO employee SET ?",
-//         { name: input.new_employee },
-//         (err, res) => {
-//           if (err) throw err;
-//           startQuestions();
-//         }
-//       );
-//     });
-// }
-
-
-
-
-
-
 
 startQuestions();
