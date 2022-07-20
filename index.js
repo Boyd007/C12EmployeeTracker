@@ -129,4 +129,31 @@ function addDepartment() {
     });
 }
 
+// function addEmployee() {
+//   inquirer
+//     .prompt([
+//       {
+//         type: "input",
+//         message: "What would you like to call the new employee?",
+//         name: "new_employee",
+//       },
+//     ])
+//     .then((input) => {
+//       db.query(
+//         "INSERT INTO employee SET ?",
+//         { name: input.new_employee },
+//         (err, res) => {
+//           if (err) throw err;
+//           startQuestions();
+//         }
+//       );
+//     });
+// }
+
+
+
+
+
+
+
 startQuestions();
