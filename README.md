@@ -12,7 +12,7 @@ This application allows the user to create a
 
 <img width="1277" alt="image" src="https://user-images.githubusercontent.com/105176171/180006097-60a611b1-9ad8-4192-af32-1f2b188b0109.png">
 
-The above criteria is met when the user is able to correctly view and 
+The above criteria is met when the user is able to correctly view and modify employees, departments and roles.
 
 # Sample 
 
