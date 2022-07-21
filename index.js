@@ -69,6 +69,7 @@ startQuestions = () => {
       }
     });
 };
+
 function addUpdateEmployeeRole() {
   db.query(
     "SELECT employee.id AS Employee_ID, CONCAT(employee.first_name, " +
@@ -115,12 +116,10 @@ function addUpdateEmployeeRole() {
                     choices: roleList,
                   },
                 ]);
-                
               }
-
-              
             });
           });
+          
       }
     }
   );
