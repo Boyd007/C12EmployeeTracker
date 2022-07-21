@@ -119,7 +119,6 @@ function addUpdateEmployeeRole() {
               }
             });
           });
-          
       }
     }
   );
@@ -230,4 +229,5 @@ function addDepartment() {
     });
 }
 
-startQuestions();
+
+                  startQuestions();
