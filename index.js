@@ -105,8 +105,19 @@ function addUpdateEmployeeRole() {
                 const roleList = res.map((item) => ({
                   name: item.title,
                   value: item.id,
+                  
                 }));
+                inquirer
+                  .prompt([
+                    {
+                      type: "list",
+                      message: "Which role would you like to assign?",
+                      name: "role_id",
+                      choices: roleList,
+                    },
+                  ])
               }
+              
               startQuestions();
             });
           });
